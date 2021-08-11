@@ -1,0 +1,6 @@
+The files in this directory are samples of crypto files, don't commit any real
+crypto stuff in here, just test stuff.
+
+signing_key.* is to be copied to the certs/ directory in the kernel source
+tree before compiling a kernel.  We need this the same so we can use each
+other's kernels without pain.
