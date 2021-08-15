@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+. /usr/share/initramfs-tools/hook-functions
+
+mkdir -p ${DESTDIR}/etc/keys
+cp /etc/keys/* ${DESTDIR}/etc/keys
+copy_exec /usr/bin/keyctl /usr/bin
+copy_exec /usr/bin/evmctl /usr/bin
+# copy mount because the default one does not know type securityfs
+# copy it to /usr/sbin because the default one takes precedence
+copy_exec /usr/bin/mount /usr/sbin

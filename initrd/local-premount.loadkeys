@@ -1,0 +1,27 @@
+#!/bin/sh
+PREREQ=""
+prereqs()
+{
+	echo "$PREREQ"
+}
+
+case $1 in
+prereqs)
+	prereqs
+	exit 0
+	;;
+esac
+
+/usr/bin/keyctl add user kmk-user "`cat /etc/keys/kmk-user.blob`" @u > /dev/null
+echo added kmk-user
+/usr/bin/keyctl add encrypted evm-key "load `cat /etc/keys/evm-user.blob`" @u > /dev/null
+echo added evm-key
+evm_id=`keyctl newring _evm @u`
+/usr/bin/evmctl import --rsa /etc/keys/rsa_public.pem $evm_id
+echo loaded public key
+mkdir /security
+/usr/sbin/mount none -t securityfs /security
+echo 1 > /security/evm
+umount /security
+echo started evm
+sleep 30

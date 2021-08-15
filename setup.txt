@@ -1,0 +1,11 @@
+To set this up:
+
+Copy kernel CA file from samples/ directory to the kernel build directory.
+
+Build kernel with docs from kernel/config.txt
+
+Run "make -C makekey" to make the secrets for /etc/keys.
+
+Run "make -C initrd" to install the initrd scripts.
+
+Build a new initrd and reboot.
