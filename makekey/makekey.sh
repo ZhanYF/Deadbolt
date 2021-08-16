@@ -28,9 +28,9 @@ __EOF__
 DIR=/etc/keys
 mkdir -p $DIR
 openssl req -new -nodes -utf8 -sha1 -days 365 -batch -config $GENKEY \
-                -out $DIR/csr_ima.pem -keyout $DIR/privkey_ima.pem
+                -out csr_ima.pem -keyout $DIR/privkey_ima.pem
 SIGN=../samples/signing_key.pem
-openssl x509 -req -in $DIR/csr_ima.pem -days 365 -extfile $GENKEY -extensions v3_usr \
+openssl x509 -req -in csr_ima.pem -days 365 -extfile $GENKEY -extensions v3_usr \
                 -CA $SIGN -CAkey $SIGN -CAcreateserial \
                 -outform DER -out $DIR/x509_ima.der
 
