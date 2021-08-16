@@ -12,6 +12,12 @@ all: /etc/initramfs-tools/hooks/keys /etc/initramfs-tools/scripts/local-premount
 /etc/initramfs-tools/scripts/local-premount/loadkeys: local-premount.loadkeys
 	install -m 755 local-premount.loadkeys /etc/initramfs-tools/scripts/local-premount/loadkeys
 
+/usr/bin/keyctl:
+	apt install keyutils
+
+/usr/bin/evmctl:
+	apt install ima-evm-utils
+
 stage2:
 	dd if=/dev/urandom bs=1 count=32 status=none | keyctl padd user kmk-user @u
 	keyctl print `keyctl search @u user kmk-user` > /etc/keys/kmk-user.blob
