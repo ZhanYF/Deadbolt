@@ -18,6 +18,12 @@ all: /etc/initramfs-tools/hooks/keys /etc/initramfs-tools/scripts/local-premount
 /usr/bin/evmctl:
 	apt install ima-evm-utils
 
+# https://mjg59.dreamwidth.org/37333.html
+# The above URL describes how @u is tied to the user not the session and how
+# sudo is based on session access so creating keys via sudo isn't going to
+# work well.  Matthew describes how to fix it but for the moment it's easiest
+# to not use sudo
+
 stage2:
 	dd if=/dev/urandom bs=1 count=32 status=none | keyctl padd user kmk-user @u
 	keyctl print `keyctl search @u user kmk-user` > /etc/keys/kmk-user.blob
