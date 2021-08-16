@@ -1,11 +1,19 @@
 To set this up:
 
-Copy kernel CA file from samples/ directory to the kernel build directory.
+1) Copy kernel CA file from samples/ directory to the kernel build directory.
 
-Build kernel with docs from kernel/config.txt
+2) Build kernel with docs from kernel/config.txt
 
-Run "make -C makekey" to make the secrets for /etc/keys.
+3) Run "make -C makekey" to make the secrets for /etc/keys.
 
-Run "make -C initrd" to install the initrd scripts.
+4.1) Run "make -C initrd" to install the initrd scripts.
 
-Build a new initrd and reboot.
+4.2) Build a new initrd and reboot.
+
+5.1) Run "make -C initrd stage2" to configure the key blogs for the initrd.
+
+5.2) Build a new initrd and reboot.
+
+6) Run "evmctl -r sign --rsa --hashalgo sha256 /lib* /usr /etc".  Note that
+sha256 isn't a good algorithm, we will change it to a stronger one (requiring
+new kernel config and build) later.  Default algorithm is easiest for testing.
