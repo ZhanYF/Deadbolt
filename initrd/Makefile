@@ -6,7 +6,7 @@
 
 all: /etc/initramfs-tools/hooks/keys /etc/initramfs-tools/scripts/local-premount/loadkeys
 
-/etc/initramfs-tools/hooks/keys: hooks.keys
+/etc/initramfs-tools/hooks/keys: hooks.keys /usr/bin/keyctl /usr/bin/evmctl
 	install -m 755 hooks.keys /etc/initramfs-tools/hooks/keys
 
 /etc/initramfs-tools/scripts/local-premount/loadkeys: local-premount.loadkeys
