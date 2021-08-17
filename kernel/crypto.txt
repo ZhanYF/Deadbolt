@@ -1,0 +1,3 @@
+The file certs/signing_key.pem from the Linux kernel build tree is compiled
+into the kernel and should be used to sign certificates so the kernel can
+recognise them.
