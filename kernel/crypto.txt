@@ -1,3 +1,14 @@
 The file certs/signing_key.pem from the Linux kernel build tree is compiled
 into the kernel and should be used to sign certificates so the kernel can
 recognise them.
+
+
+The serial number for a given x509 cert can be found with the following:
+
+openssl x509 -noout -serial -in /etc/keys/<filename>.der -inform DER
+
+or to access it through the public keys .pem file:
+
+openssl x509 -noout -serial -in /etc/keys/<filename>.pem -inform PEM
+
+make sure to replace <filename>
