@@ -1,0 +1,3 @@
+Try removing CONFIG_EVM_ATTR_FSUUID and see how that goes.
+
+Also there's a portable option for not having inode numbers.
