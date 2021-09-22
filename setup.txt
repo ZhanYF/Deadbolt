@@ -2,7 +2,12 @@ To set this up:
 
 1) Copy kernel CA file from samples/ directory to the kernel build directory.
 
-2) Build kernel with docs from kernel/config.txt
+2.1) Build kernel with docs from kernel/config.txt
+
+2.2) Setup kernel command-line from kernel/cmdline.txt
+
+2.3) Edit /usr/share/initramfs-tools/hooks/kmod and remove the -aZ options
+from cp (this is a temporary issue)
 
 3) Run "make -C makekey" to make the secrets for /etc/keys.
 
