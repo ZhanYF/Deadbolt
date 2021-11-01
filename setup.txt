@@ -15,7 +15,7 @@ from cp (this is a temporary issue)
 
 4.2) Build a new initrd and reboot.
 
-5.1) Run "make -C initrd stage2" to configure the key blogs for the initrd.
+5.1) Run "make -C initrd stage2" to configure the key blobs for the initrd.
 
 5.2) Build a new initrd and reboot.
 
