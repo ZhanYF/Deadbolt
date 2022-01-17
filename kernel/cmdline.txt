@@ -13,3 +13,5 @@ At one time lacking "lsm=integrity" would cause kernel panics
 
 
 Make sure all filesystems are mounted with the "iversion" option (seen as "i_version" in /proc/mounts)
+
+See kernel source Documentation/admin-guide/kernel-parameters.txt for more
