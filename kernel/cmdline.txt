@@ -1,10 +1,13 @@
 To label the filesystem use the following kernel command line:
-lsm=integrity ima_policy=appraise_tcb ima_appraise=fix
+lsm=integrity ima_hash=sha256 ima_policy=appraise_tcb ima_appraise=fix
+
+To log the results without enforcing them use the following:
+lsm=integrity ima_hash=sha256 ima_policy=appraise_tcb ima_appraise=log
 
 To run in enforcing mode (deny access to files failing checks) use the
 following kernel command line (not tested):
 
-lsm=integrity ima_policy=appraise_tcb ima_appraise=enforce
+lsm=integrity ima_hash=sha256 ima_policy=appraise_tcb ima_appraise=enforce
 
 At one time lacking "lsm=integrity" would cause kernel panics
 
