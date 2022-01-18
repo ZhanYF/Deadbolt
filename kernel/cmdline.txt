@@ -1,15 +1,27 @@
 To label the filesystem use the following kernel command line:
-lsm=integrity ima_hash=sha256 ima_policy=appraise_tcb ima_appraise=fix
+lsm=integrity ima_hash=sha256 ima_policy=tcb ima_appraise=fix
 
 To log the results without enforcing them use the following:
-lsm=integrity ima_hash=sha256 ima_policy=appraise_tcb ima_appraise=log
+lsm=integrity ima_hash=sha256 ima_policy=tcb ima_appraise=log
 
 To run in enforcing mode (deny access to files failing checks) use the
 following kernel command line (not tested):
 
-lsm=integrity ima_hash=sha256 ima_policy=appraise_tcb ima_appraise=enforce
+lsm=integrity ima_hash=sha256 ima_policy=tcb ima_appraise=enforce
 
 At one time lacking "lsm=integrity" would cause kernel panics
+
+                        The builtin policies to load during IMA setup.
+                        Format: "tcb | appraise_tcb | secure_boot |
+                                 fail_securely | critical_data"
+
+                        The "tcb" policy measures all programs exec'd, files
+                        mmap'd for exec, and all files opened with the read
+                        mode bit set by either the effective uid (euid=0) or
+                        uid=0.
+
+                        The "appraise_tcb" policy appraises the integrity of
+                        all files owned by root.
 
 
 Make sure all filesystems are mounted with the "iversion" option (seen as "i_version" in /proc/mounts)
