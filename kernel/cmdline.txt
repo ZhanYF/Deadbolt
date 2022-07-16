@@ -32,4 +32,6 @@ At one time lacking "lsm=integrity" would cause kernel panics
 
 Make sure all filesystems are mounted with the "iversion" option (seen as "i_version" in /proc/mounts)
 
+IMA_APPRAISE_BOOTPARAM enables the ima_appraise kernel boot param, values are off, log, fix, and enforce 
+
 See kernel source Documentation/admin-guide/kernel-parameters.txt for more
