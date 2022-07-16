@@ -1,8 +1,9 @@
 # run "make" to configure initrd to have the keys, then generate a new initrd and boot it
-# after booting with the initrd containing /etc/keys run "make stage2" to generate the blobs
-# then make a new initrd and boot again
+# after booting with the initrd containing /etc/keys run "make stage2" to generate the first
+# blob then make a new initrd and boot again.  After that run "make stage3" to generate the last
+# blob and make a new initrd and boot again.
 #
-# need to find a simpler process for this!
+# need to find a simpler process for this!  3 stage process is a bug in something.
 
 all: /etc/initramfs-tools/hooks/keys /etc/initramfs-tools/scripts/local-premount/loadkeys
 
@@ -27,6 +28,8 @@ all: /etc/initramfs-tools/hooks/keys /etc/initramfs-tools/scripts/local-premount
 stage2:
 	dd if=/dev/urandom bs=1 count=32 status=none | keyctl padd user kmk-user @u
 	keyctl print `keyctl search @u user kmk-user` > /etc/keys/kmk-user.blob
+
+stage3:
 	keyctl add encrypted evm-key "new user:kmk-user 32" @u
 	keyctl pipe `keyctl search @u encrypted evm-key` > /etc/keys/evm-user.blob
 
