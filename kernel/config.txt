@@ -70,6 +70,8 @@ CONFIG_IMA_ARCH_POLICY=n
 # module signing is always a good thing, and specifying a signing key is needed
 # to preload that signing key
 CONFIG_MODULE_SIG=y
+CONFIG_MODULE_SIG_FORCE=y
+CONFIG_MODULE_SIG_ALL=y
 CONFIG_MODULE_SIG_SHA256=y
 CONFIG_MODULE_SIG_HASH="sha256"
 CONFIG_MODULE_SIG_KEY="certs/signing_key.pem"
@@ -79,3 +81,6 @@ KERNEL KEYS
 keys are in certs/signing_key.* in the kernel build (or samples/signing_key.*
 in git)  and can be copied to the new kernel.  Note that we MUST compile all
 kernels with the same certs so we can swap them between system images.
+
+The following error is from not having CONFIG_MODULE_SIG_ALL enabled:
+[    1.166461] virtio_ring: module verification failed: signature and/or required key missing - tainting kernel
