@@ -2,6 +2,7 @@ The ima_policy option supports multiple items separated by |, so you can have
 ima_policy=tcb|fail_securely to make it fail hard on unverifyable sigs.
 
 ima_policy=tcb and ima_policy=secure_boot are most interesting.
+ima_policy=critical_data is another option
 
 To label the filesystem use the following kernel command line:
 lsm=integrity ima_hash=sha256 ima_policy=tcb ima_appraise=fix
