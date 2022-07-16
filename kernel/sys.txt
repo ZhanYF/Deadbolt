@@ -23,6 +23,12 @@ measure func=MODULE_CHECK
 measure func=FIRMWARE_CHECK 
 measure func=POLICY_CHECK
 
+Here is the secure_boot policy:
+appraise func=MODULE_CHECK appraise_type=imasig 
+appraise func=FIRMWARE_CHECK appraise_type=imasig 
+appraise func=KEXEC_KERNEL_CHECK appraise_type=imasig 
+appraise func=POLICY_CHECK appraise_type=imasig
+
 To get the list of measurements of files:
 cat /sys/kernel/security/integrity/ima/ascii_runtime_measurements
 
