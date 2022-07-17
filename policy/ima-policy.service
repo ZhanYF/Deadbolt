@@ -1,0 +1,14 @@
+[Unit]
+Description=Load IMA Policy
+#Before=basic.target
+#After=local-fs.target sysinit.target
+Before=sysinit.target systemd-sysusers.service
+After=local-fs.target systemd-remount-fs.service
+DefaultDependencies=no
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/loadpol
+
+[Install]
+WantedBy=sysinit.target
