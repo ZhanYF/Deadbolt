@@ -3,7 +3,7 @@ Description=Load IMA Policy
 #Before=basic.target
 #After=local-fs.target sysinit.target
 Before=sysinit.target systemd-sysusers.service
-After=local-fs.target systemd-remount-fs.service
+After=local-fs.target
 DefaultDependencies=no
 
 [Service]
