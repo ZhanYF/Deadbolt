@@ -1,7 +1,19 @@
 From https://wiki.tizen.org/Security:IntegrityMeasurement/Preparing_Tizen_image_protected_by_IMA/EVM
 
-cat /sys/kernel/security/integrity/ima/policy > ~/policy
+cat /sys/kernel/security/integrity/ima/policy > ~/policy.ima
 # sign the policy file in the usual way
-evmctl ima_sign --hashalgo sha256 ~/policy
-# load a policy file with sig file
-echo /root/policy > /sys/kernel/security/ima/policy
+evmctl ima_sign --hashalgo sha256 ~/policy.ima
+# load a policy file by sending it's file name to the kernel:
+echo /root/policy.ima > /sys/kernel/security/ima/policy
+
+Here are the noteworthy things from the policy we are using:
+# check for sig on loading policy
+appraise func=POLICY_CHECK appraise_type=imasig
+# check for sig on executable file map (IE shared objects)
+appraise func=MMAP_CHECK mask=MAY_EXEC
+# check on running programs
+appraise func=BPRM_CHECK mask=MAY_EXEC
+# checking modules, firmware, and kexec
+appraise func=MODULE_CHECK
+appraise func=FIRMWARE_CHECK
+appraise func=KEXEC_KERNEL_CHECK appraise_type=imasig
