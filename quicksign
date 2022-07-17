@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+find / -maxdepth 3 -mindepth 3 -type d ! -path "/proc/*" ! -path "/sys/*" ! -path "/var/log/*" -print \
+       | parallel -j4 evmsign -r {} >/dev/null 2>&1
