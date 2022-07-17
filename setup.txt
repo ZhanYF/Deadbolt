@@ -19,6 +19,6 @@ from cp (this is a temporary issue)
 
 5.2) Build a new initrd and reboot.
 
-6) Run "evmctl -r sign --rsa --hashalgo sha256 /lib* /usr /etc".  Note that
+6) Run "evmctl ima_sign --hashalgo sha256 -r /lib* /usr /etc ; evmctl sign --hashalgo sha256 -r /lib* /usr /etc".  Note that
 sha256 isn't a good algorithm, we will change it to a stronger one (requiring
 new kernel config and build) later.  Default algorithm is easiest for testing.
