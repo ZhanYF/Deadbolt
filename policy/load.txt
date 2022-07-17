@@ -1,0 +1,7 @@
+From https://wiki.tizen.org/Security:IntegrityMeasurement/Preparing_Tizen_image_protected_by_IMA/EVM
+
+cat /sys/kernel/security/integrity/ima/policy > ~/policy
+# sign the policy file in the usual way
+evmctl ima_sign --hashalgo sha256 ~/policy
+# load a policy file with sig file
+echo /root/policy > /sys/kernel/security/ima/policy
