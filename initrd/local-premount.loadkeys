@@ -24,4 +24,4 @@ mkdir /security
 echo 1 > /security/evm
 umount /security
 echo started evm
-sleep 30
+sleep 10
