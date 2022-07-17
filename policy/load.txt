@@ -4,7 +4,7 @@ cat /sys/kernel/security/integrity/ima/policy > ~/policy.ima
 # sign the policy file in the usual way
 evmctl ima_sign --hashalgo sha256 ~/policy.ima
 # load a policy file by sending it's file name to the kernel:
-echo /root/policy.ima > /sys/kernel/security/ima/policy
+echo /etc/keys/policy.ima > /sys/kernel/security/ima/policy
 
 Here are the noteworthy things from the policy we are using:
 # check for sig on loading policy
