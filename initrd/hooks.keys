@@ -4,7 +4,9 @@ set -e
 . /usr/share/initramfs-tools/hook-functions
 
 mkdir -p ${DESTDIR}/etc/keys
-cp /etc/keys/* ${DESTDIR}/etc/keys
+# seems /etc/keys/rsa_public.pem is not needed
+#cp /etc/keys/pubkey_ima.pem /etc/keys/pubkey_evm.pem /etc/keys/x509_*.der ${DESTDIR}/etc/keys
+cp /etc/keys/x509_*.der /etc/keys/*blob ${DESTDIR}/etc/keys
 copy_exec /usr/bin/keyctl /usr/bin
 copy_exec /usr/bin/evmctl /usr/bin
 # copy mount because the default one does not know type securityfs
