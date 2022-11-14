@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+evmctl ima_sign  --hashalgo sha256 "$@"
+evmctl sign  --hashalgo sha256 "$@"

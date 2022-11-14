@@ -1,0 +1,3 @@
+#!/bin/bash
+
+evmctl verify --hashalgo sha256 "$1"
