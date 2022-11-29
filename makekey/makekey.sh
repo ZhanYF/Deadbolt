@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [ "$1" == "" -o ! -f "$1/signing_key.pem" ]; then
   echo Must specify kernel certs dir on command line
@@ -37,7 +38,7 @@ chmod 700 $DIR
 openssl req -new -nodes -utf8 -sha1 -days 365 -batch -config $GENKEY \
                 -out csr_ima.pem -keyout $DIR/privkey_ima.pem
 openssl x509 -req -in csr_ima.pem -days 365 -extfile $GENKEY -extensions v3_usr \
-                -CA "$SIGN_KEY" -CAkey $SIGN -CAcreateserial \
+                -CA "$SIGN_KEY" -CAkey $SIGN_KEY -CAcreateserial \
                 -outform DER -out $DIR/x509_ima.der
 
 openssl x509 -inform DER -in $DIR/x509_ima.der -pubkey -out $DIR/pubkey_ima.pem
